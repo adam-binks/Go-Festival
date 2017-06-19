@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
-import scrapy, logging
+import logging
+from scrapy import Spider
+from scrapy.crawler import CrawlerProcess
 
 
-class FestivalsSpider(scrapy.Spider):
+class FestivalsSpider(Spider):
     name = "festivals"
 
     # just do UK festivals for now
@@ -89,3 +91,14 @@ class FestivalsSpider(scrapy.Spider):
         festival_details["LINEUP"] = lineup
 
         yield festival_details
+
+
+
+def start_crawl_process():
+    process = CrawlerProcess()
+    process.crawl(FestivalsSpider)
+    process.start()
+
+
+if __name__ == "__main__":  # this script is ran directly by the cron job
+    start_crawl_process()
