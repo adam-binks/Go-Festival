@@ -1,0 +1,1 @@
+from .go_festival import app

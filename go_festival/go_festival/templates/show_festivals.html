@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block body %}
+
+    <ul>
+    {% for festival in festivals %}
+        <li><p> {{ festival.title }} on {{ festival.festival_date}} at {{ festival.location }} </p></li>
+    {% else %}
+        <li><em>No festivals!</em></li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}

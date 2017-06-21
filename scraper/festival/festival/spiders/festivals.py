@@ -30,10 +30,7 @@ class FestivalsSpider(Spider):
         # returns true if number of festivals found > 0
         def festivals_were_found(response):
             festival_count_text = response.css(".festival-count ::text").extract_first().rstrip()
-            festival_count_text = festival_count_text.replace('\r', '').replace('\n',
-                                                                                '')  # get rid of newline characters
-
-            logging.debug("\n\n\n\n\n\n\n\n\n\n" + festival_count_text)
+            festival_count_text = festival_count_text.replace('\r', '').replace('\n', '')  # get rid of newline characters
 
             return "found 0 festivals" not in festival_count_text
 
@@ -51,6 +48,7 @@ class FestivalsSpider(Spider):
         next_page_url = replace_page_num(response.url, current_page_num, current_page_num + 1)
 
         yield response.follow(next_page_url, self.parse)
+
 
     def parse_festival(self, response):
 

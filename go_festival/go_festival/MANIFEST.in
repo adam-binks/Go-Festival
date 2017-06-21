@@ -1,0 +1,3 @@
+graft go_festival/templates
+graft go_festival/static
+include go_festival/schema.sql
